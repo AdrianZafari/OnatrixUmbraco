@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	var content = (ContentModels.ServiceSection)Model.Content;
+	var settings = Model.Settings as ContentModels.ServiceSettings; 
+	var sectionColor = settings?.ServiceBgColor?.Color.ToLowerInvariant();
+
+	var current = Umbraco.AssignedContentItem;
+	var siteRoot = current?.Root();
+	var servicePage = siteRoot?.Children<ServicePage>()?.FirstOrDefault();
+	var items = servicePage?.Children<ServiceDetail>()?.OrderByDescending(x => x.CreateDate).ToList() ?? [];
+
+	var sectionBgClrClass = sectionColor switch  // I would rather avoid using Tailwind CDN, this here is for the site settings bg color
+	{
+		"#ffffff" => ".service-section-bg-clr-standard",
+		"#f7f7f7" => ".service-section-bg-clr-alternate",
+		_ => ".service-section-bg-clr-standard"
+	};
+}
+
+<section id="service-section" class="@sectionBgClrClass">
+	<div class="service-container">
+		<div class="service-header">
+
+			@if (settings!.ShowServiceLabel)
+			{
+				<h2 class="service-label">@content.ServiceLabel</h2>
+			}
+			<div class="service-title rte">@Html.Raw(content.ServiceTitle)</div>
+		</div>
+
+		<div class="service-grid">
+
+			@if (items.Any())
+			{
+				@foreach (var item in items)
+				{
+					<div class="service-card">
+						<a href="@item.Url()">
+							<h4>@item.Name</h4>
+							@if (item.ServiceDetailThumbnail != null)
+							{
+								<img src="@item.ServiceDetailThumbnail.Url()" alt="@item.Name">
+							}
+							<p>@item.ServiceDetailExcerpt</p>
+						</a>
+					</div>
+				}
+			}
+			else
+			{
+				<p>No services available at the moment.</p>
+			}
+
+		</div>
+	</div>
+</section>
