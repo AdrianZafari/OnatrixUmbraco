@@ -32,9 +32,14 @@
 				<select asp-for="SelectedOption">
 
 					<option value="" disabled hidden selected>Please select an option</option>
-					<option value="Financial Consulting">Financial Consulting</option>
+					@* <option value="Financial Consulting">Financial Consulting</option>
 					<option value="Business">Business</option>
-					<option value="Tax Planning">Tax Planning</option>
+					<option value="Tax Planning">Tax Planning</option> *@
+
+					@foreach (var option in Model.Options)
+					{
+						<option value="@option">@option</option>
+					}
 
 				</select>
 

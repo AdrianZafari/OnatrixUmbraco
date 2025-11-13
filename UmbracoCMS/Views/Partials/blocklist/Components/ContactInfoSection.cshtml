@@ -1,0 +1,73 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	var content = (ContentModels.ContactInfoSection)Model.Content;
+	var settings = Model.Settings as ContentModels.ContactInfoSettings;
+	var sectionColor = settings?.ContactBgColor?.Color.ToLowerInvariant();
+
+	// Fetch site settings for contact details
+
+	var rootContent = Umbraco.ContentAtRoot();
+	var siteSettings = rootContent.OfType<SiteSettings>().FirstOrDefault();
+
+	var contactAddress = siteSettings?.ContactAddress ?? "No address given";
+	var contactPhone = siteSettings?.ContactPhone ?? "No phone number given";
+	var contactEmail = siteSettings?.ContactEmail ?? "No email given";
+
+	// Determine background color class based on sectionColor
+
+	var sectionBgClrClass = sectionColor switch  // This is the same as in ServiceSection.cshtml
+	{
+		"#ffffff" => "service-section-bg-clr-standard",
+		"#f7f7f7" => "service-section-bg-clr-alternate",
+		_ => ".service-section-bg-clr-standard"
+	};
+}
+
+<section id="contact-section" class="@sectionBgClrClass">
+	<div class="contact-container">
+
+		 <div class="contact-image">
+			 @if (content.ContactInfoImage != null)
+			 {
+				 <img src="@content.ContactInfoImage.Url()" alt="Contact Image">
+			}
+		 </div>
+
+		 <div class="contact-info-container">
+			 <h1 class="contact-info-title">@content.ContactInfoTitle</h1>
+
+			 <div class="contact-info-field">
+				 <div class="contact-info-icon">
+					<i class="fa-solid fa-location-dot"></i>
+				 </div>
+				 <div class="contact-info-text">
+					<span>Office location</span>
+					<p>@contactAddress</p>
+				 </div>
+			 </div>
+
+			<div class="contact-info-field">
+				<div class="contact-info-icon">
+					<i class="fa-solid fa-phone-flip"></i>
+				</div>
+				<div class="contact-info-text">
+					<span>Phone Number</span>
+					<p>@contactPhone</p>
+				</div>
+			</div>
+
+			<div class="contact-info-field">
+				<div class="contact-info-icon">
+					<i class="fa-regular fa-envelope"></i>
+				</div>
+				<div class="contact-info-text">
+					<span>E-mail address</span>
+					<p>@contactEmail</p>
+				</div>
+			</div>
+
+		 </div>
+
+	</div>
+</section>

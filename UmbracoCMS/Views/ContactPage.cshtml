@@ -6,4 +6,4 @@
 
 <partial name="Partials/Layout/_PageBanner" model="(IPageBanner)Model" />
 
-<h1>@Model.PageTitle</h1>
+@Html.GetBlockListHtml(Model.Sections)

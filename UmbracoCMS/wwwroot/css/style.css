@@ -23,9 +23,11 @@ body {
     --clr-secondary: #D9C3A9;
     --clr-gray-400: #4B5264;
     --clr-body-text: #5235656;
-    --clr-red-500: #EF4444;
-    --clr-red-600: oklch(57.7% 0.245 27.325);
+    --clr-red-50: oklch(97.1% 0.013 17.38);
+    --clr-red-700: oklch(50.5% 0.213 27.518);
     --clr-body-text-100: #999999;
+    --clr-green-50: oklch(98.2% 0.018 155.826);
+    --clr-green-700: oklch(52.7% 0.154 150.069);
     --clr-note1: #9C9EA6; /* gray-300 */
     --clr-border-gray: #EAEAEA;
     --clr-gray-300: #EBEBEB;
@@ -533,6 +535,23 @@ body {
     color: var(--clr-red-600);
 }
 
+.form-submit-message-container-success {
+    background-color: var(--clr-green-50);
+    color: var(--clr-green-700);
+    padding: 1rem;
+    margin: 0 2rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+}
+.form-submit-message-container-fail {
+    background-color: var(--clr-red-50);
+    color: var(--clr-red-700);
+    padding: 1rem;
+    margin: 0 2rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+}
+
 
 /* Service Section */
 
@@ -740,3 +759,67 @@ body {
         font-size: 0.875rem;
         color: var(--clr-note1);
     }
+
+/* Contact Section */
+
+#contact-section {
+    padding-top: 2.5rem;
+}
+
+.contact-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    gap: 5%;
+}
+
+.contact-image {
+    width: 50%
+}
+
+.contact-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contact-info-container {
+    width: 40%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contact-info-title {
+    font-size: 2.5rem;
+    color: var(--clr-primary);
+    font-weight: 700;
+}
+
+.contact-info-field {
+    display: flex;
+    padding-top: 1.25rem;
+    gap: 0.5rem;
+}
+
+.contact-info-icon {
+    display: flex;
+    align-items: flex-start;
+}
+
+    .contact-info-icon i {
+        padding: 0.25rem 0;
+        font-size: 1.5rem;
+        color: var(--clr-secondary);
+    }
+
+.contact-info-text {
+    color: var(--clr-primary);
+    font-size: 1rem;
+}
+
+.contact-info-text  span {
+    font-weight: 600;
+}
