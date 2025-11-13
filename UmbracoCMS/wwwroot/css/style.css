@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
-        margin: 0;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -23,16 +23,35 @@ body {
     --clr-secondary: #D9C3A9;
     --clr-gray-400: #4B5264;
     --clr-body-text: #5235656;
+    --clr-red-500: #EF4444;
+    --clr-red-600: oklch(57.7% 0.245 27.325);
     --clr-body-text-100: #999999;
-    --clr-note1: #9C9EA6; /* gray-600 */
+    --clr-note1: #9C9EA6; /* gray-300 */
     --clr-border-gray: #EAEAEA;
+    --clr-gray-300: #EBEBEB;
     --clr-border-400: #C7C8C9;
     /* Styling */
     --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --ring-2: 0 0 0 2px var(--clr-primary);
+    --ring-1-red-500: 0 0 0 1px var(--clr-red-500);
 }
 
 
 /* Generic */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 
     /*RTE config*/
 
@@ -46,7 +65,7 @@ body {
         margin-bottom: 0.75rem;
     }
 
-    img {
+    img.full-width {
         width: 100%;
         height: auto;
         object-fit: cover;
@@ -370,9 +389,10 @@ body {
     
 }
 
+
 .hero-link {
     background-color: #4F5955;
-    color: #fff;
+    color: var(--clr-accent);
     padding: 0.75rem 2.5rem; /* py-3 px-10 => 0.75rem top/bottom, 2.5rem left/right */
     text-decoration: none;
     border-radius: 0.25rem; /* rounded */
@@ -380,6 +400,139 @@ body {
     align-self: flex-start;
     font-weight: 700;
 }
+
+/* About Callback Section */
+#about-callback {
+    padding: 7rem 0;
+}
+
+.about-callback-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    gap: 2.5rem;
+}
+
+.about-callback-body-container {
+    display: flex;
+    flex-direction: column;
+    width: 58.333%;
+}
+
+.about-callback-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 41.666%;
+    box-shadow: var(--shadow-md);
+    margin-top: -11rem;
+    z-index: 99;
+}
+
+.about-callback-form-banner {
+    background-color: var(--clr-primary);
+}
+
+    .about-callback-form-banner p {
+        padding: 1.5rem 2rem;
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: var(--clr-accent);
+    }
+
+.about-callback-form-description {
+    font-size: 0.875rem;
+    padding: 1.5rem 2rem;
+    font-style: italic;
+}
+
+/* Form section */
+
+.form-container {
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+    .form-container .form-input {
+        width: 100%;
+        padding: 0.75rem;
+        font-style: italic;
+        border: 1px solid var(--clr-note1);
+    }
+
+        .form-container .form-input:focus {
+            box-shadow: var(--ring-2);
+            outline: none;
+        }
+
+    .form-container .form-select-option-field {
+        position: relative;
+    }
+
+    .form-select-option-field select {
+        appearance: none;
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--clr-note1);
+        font-size: 0.875rem;
+        color: var(--clr-body-text);
+        
+    }
+        .form-select-option-field select:focus {
+            box-shadow: var(--ring-2);
+            outline: none;
+        }
+
+    .form-container .form-select-option {
+        pointer-events: none;
+        position: absolute;
+        right: 0.75rem;
+        inset-block: 0; /* inset-y-0 */
+        display: flex;
+        align-items: center;
+    }
+
+    .form-select-option .drop-down-icon {
+        height: 1rem;
+        width: 1rem;
+        color: var(--clr-note1);
+    }
+
+.form-submit-btn-container {
+    padding: 1.5rem 0;
+}
+
+    .form-submit-btn-container .form-submit-btn {
+        width: 100%;
+        background-color: var(--clr-accent);
+        color: var(--clr-primary);
+        text-align: center;
+        font-weight: 700;
+        border-radius: 3px; /* rounded-md is 6px, looked too round */
+        cursor: pointer;
+        user-select: none;
+        padding: 0.75rem 3rem;
+        font-size: 1.125rem;
+        border: none;
+    }
+
+.form-container .form-input.input-validation-error {
+    border: 1px solid red;
+}
+
+.form-container .form-input.input-validation-error:focus {
+    box-shadow: var(--ring-1-red-500);
+}
+
+.field-validation-error {
+    margin-top: 0.25rem;
+    display: block;
+    font-size: 0.875rem;
+    color: var(--clr-red-600);
+}
+
 
 /* Service Section */
 

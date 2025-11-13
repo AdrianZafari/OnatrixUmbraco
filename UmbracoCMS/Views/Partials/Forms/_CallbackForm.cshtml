@@ -1,0 +1,61 @@
+﻿@using UmbracoCMS.ViewModels
+@model CallbackFormViewModel
+
+@using (Html.BeginUmbracoForm("HandleCallbackForm", "Form", FormMethod.Post, new {novalidate = "novalidate", id = "callbackForm"}))
+{
+	<div class="form-container">
+
+
+		<div>
+			<label asp-for="Name" class="sr-only"></label>
+			<input asp-for="Name" type="text" placeholder="@Html.DisplayNameFor(x => x.Name)" class="form-input"/>
+			<span asp-validation-for="Name"></span>
+		</div>
+
+		<div>
+			<label asp-for="Email" class="sr-only"></label>
+			<input asp-for="Email" type="text" placeholder="@Html.DisplayNameFor(x => x.Email)" class="form-input" />
+			<span asp-validation-for="Email"></span>
+		</div>
+
+		<div>
+			<label asp-for="Phone" class="sr-only"></label>
+			<input asp-for="Phone" type="text" placeholder="@Html.DisplayNameFor(x => x.Phone)" class="form-input" />
+			<span asp-validation-for="Phone"></span>
+		</div>
+
+		<div>
+
+			<label asp-for="SelectedOption" class="sr-only"></label>
+
+			<div class="form-select-option-field">
+				<select asp-for="SelectedOption">
+
+					<option value="" disabled hidden selected>Please select an option</option>
+					<option value="Financial Consulting">Financial Consulting</option>
+					<option value="Business">Business</option>
+					<option value="Tax Planning">Tax Planning</option>
+
+				</select>
+
+				<span class="form-select-option">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none"
+						 viewBox="0 0 24 24" class="drop-down-icon" stroke="currentColor" stroke-width="2">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+					</svg>
+				</span>
+
+
+			</div>
+
+			<span asp-validation-for="SelectedOption"></span>
+
+
+		</div>
+
+		<div class="form-submit-btn-container">
+			<button type="submit" class="form-submit-btn">Submit</button>
+		</div>
+		 
+	</div>
+}
