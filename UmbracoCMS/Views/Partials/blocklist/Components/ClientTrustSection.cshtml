@@ -1,0 +1,29 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.ClientTrustSection)Model.Content;
+}
+
+
+
+<section id="clientTrust-section">
+	<div class="clientTrust-container">
+		<div class="clientTrust-bg-image-container">
+			@if (content.ClientTrustBgImage != null)
+			{
+				<img src="@content.ClientTrustBgImage.Url()" alt="Client Trust background">
+			}
+		</div>
+
+		<div class="clientTrust-content-container">
+			<div class="clientTrust-content">
+				<h1 class="clientTrust-title">@Html.Raw(content.ClientTrustTitle)</h1>
+				<p class="clientTrust-text">@content.ClientTrustDescription</p>
+				@if (content.ClientTrustLink != null)
+				{
+					<a class="clientTrust-link" href="@content.ClientTrustLink.Url">@content.ClientTrustLink.Name</a>
+				}
+			</div>
+		</div>
+	</div>
+</section>
