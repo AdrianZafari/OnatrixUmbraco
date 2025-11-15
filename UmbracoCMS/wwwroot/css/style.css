@@ -1060,7 +1060,7 @@ body {
     .contactCallback-container .form-container .form-sub-container {
         display: flex;
         flex-direction: row;
-        gap: 1.5rem; /* spacing between the two fields */
+        gap: 1.5rem; 
     }
 
         .contactCallback-container .form-container .form-sub-container > div { /* This was done with the help of chat GPT */
