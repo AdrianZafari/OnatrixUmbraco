@@ -1,0 +1,45 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoCMS.ViewModels
+@{
+	var content = (ContentModels.ContactCallbackSection)Model.Content;
+	var settings = Model.Settings as ContentModels.AboutCallbackSettings;
+
+	var formVM = new CallbackFormViewModel
+	{
+		Options = settings?.CallbackRequestOptions ?? []
+	};
+
+	var bgImage = content?.ContactCallbackBgImage != null
+		? content.ContactCallbackBgImage.Url()
+		: "~/images/ContactUs/map-stockholm.svg";
+}
+
+<section id="contactCallback-section"
+		 style="background-image:url('@bgImage');">
+
+	<div class="contactCallback-container">
+
+		<div class="contactCallback-text-container">
+			<span>@content?.ContactFormLabel</span>
+			<h2>@content?.ContactFormTitle</h2>
+			<p>@content?.ContactFormDescription</p>
+		</div>
+
+		<partial name="Partials/Forms/_CallbackForm" model="formVM" />
+
+		@if (TempData["FormSuccess"] != null)
+		{
+			<div class="form-submit-message-container-success">
+				@TempData["FormSuccess"]
+			</div>
+		}
+		else if (TempData["FormError"] != null)
+		{
+			<div class="form-submit-message-container-fail">
+				@TempData["FormError"]
+			</div>
+		}
+	</div>
+
+</section>
