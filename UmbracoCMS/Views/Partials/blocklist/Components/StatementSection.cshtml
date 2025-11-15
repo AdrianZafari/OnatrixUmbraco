@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.StatementSection)Model.Content;
+}
+
+
+<section id="statement-section">
+    <div class="statement-container">
+
+        <div class="statement-image-container">
+            @if (content.StatementPersonImage != null)
+            {
+                <img src="@content.StatementPersonImage.Url()" alt="@content.StatementImageCaption">
+            }
+            <span>@content.StatementImageCaption</span>
+        </div>
+
+        <div class="statement-content-container">
+            <div class="rte">@Html.Raw(content.StatementContent)</div>
+        </div>
+
+    </div>
+</section>
