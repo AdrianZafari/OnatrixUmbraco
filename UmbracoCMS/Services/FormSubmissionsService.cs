@@ -3,11 +3,12 @@ using UmbracoCMS.ViewModels;
 
 namespace UmbracoCMS.Services;
 
-public class FormSubmissionsService(IContentService contentService)
+public class FormSubmissionsService(IContentService contentService, EmailService emailService)
 {
     private readonly IContentService _contentService = contentService;
+    private readonly EmailService _emailService = emailService;
 
-    public bool SaveCallbackRequest(CallbackFormViewModel model)
+    public async Task<bool> SaveCallbackRequestAsync(CallbackFormViewModel model)
     {
         try
         {
@@ -26,6 +27,10 @@ public class FormSubmissionsService(IContentService contentService)
             request.SetValue("callbackRequestOption", model.SelectedOption);
 
             var saveResult = _contentService.Save(request);
+
+            // Send confirmation email
+            await _emailService.SendConfirmationEmailAsync(model.Email, model.Name);
+
             return saveResult.Success;
         }
         catch (Exception ex )

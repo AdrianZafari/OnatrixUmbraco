@@ -13,26 +13,22 @@ namespace UmbracoCMS.Controllers
 {
     public class FormController(IUmbracoContextAccessor umbracoContextAccessor, IUmbracoDatabaseFactory databaseFactory, ServiceContext services, AppCaches appCaches, IProfilingLogger profilingLogger, IPublishedUrlProvider publishedUrlProvider, FormSubmissionsService formSubmissions) : SurfaceController(umbracoContextAccessor, databaseFactory, services, appCaches, profilingLogger, publishedUrlProvider)
     {
-        private readonly FormSubmissionsService _formSubmissions = formSubmissions; 
+        private readonly FormSubmissionsService _formSubmissions = formSubmissions;
 
-        public IActionResult HandleCallbackForm(CallbackFormViewModel model)
+        public async Task<IActionResult> HandleCallbackForm(CallbackFormViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return CurrentUmbracoPage();
-            }
 
-            var result = _formSubmissions.SaveCallbackRequest(model);
+            var result = await _formSubmissions.SaveCallbackRequestAsync(model);
+
             if (!result)
             {
                 TempData["FormError"] = "Something went wrong while submitting your request. Please try again later.";
                 return RedirectToCurrentUmbracoPage();
             }
 
-            // Work with form data here
-
             TempData["FormSuccess"] = "Thank you! Your request has been received. We will get back to you soon.";
-
             return RedirectToCurrentUmbracoPage();
         }
     }
