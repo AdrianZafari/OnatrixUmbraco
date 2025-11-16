@@ -42,9 +42,11 @@
 			</a>
 		}
 
+	
+
 		@if (selection?.Length > 0)
 		{
-			<ul class="navbar-items-list">
+			<ul class="navbar-items-list" id="navbarMenu">
 				@foreach (var item in selection)
 				{
 					<li class="@(item.IsAncestorOrSelf(Model) ? "current" : null)">
@@ -58,5 +60,15 @@
 			<i class="fa-solid fa-magnifying-glass"></i>
 		</div>
 
+		<button class="navbar-toggle" id="navbarToggle">
+			<i class="fa-solid fa-bars"></i>
+		</button>
+
 	</nav>
 </header>
+
+<script> // Easier to handle here than adding a whole other file 
+	document.getElementById("navbarToggle").addEventListener("click", function () {
+		document.getElementById("navbarMenu").classList.toggle("open");
+	});
+</script>

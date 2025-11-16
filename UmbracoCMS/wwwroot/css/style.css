@@ -198,7 +198,7 @@ body {
 #header {
     position: relative;
     box-shadow: var(--shadow-sm);
-    z-index: 999;
+    z-index: 99;
 }
 
 .navbar {
@@ -221,6 +221,51 @@ body {
         gap: 4rem;
         list-style-type: none;
     }
+
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--clr-primary);
+    cursor: pointer;
+}
+
+@media (max-width: 765px) { /* This was done with the help of chatGPT*/
+
+    
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-search-icon i{
+        display: none;
+    }
+
+    .navbar-items-list {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0; 
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        border-top: 1px solid #eee;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.35s ease;
+    }
+
+        /* Open (animated) state */
+        .navbar-items-list.open {
+            padding: 1.5rem 0;
+            max-height: 300px; /* enough to show all items */
+            opacity: 1;
+        }
+}
 
 .navbar-item-text {
     font-weight: 700;
@@ -332,16 +377,22 @@ body {
     max-width: 1280px;
     padding: 1.5rem 0;
     margin: 0 auto;
-    align-items: center
+    align-items: center;
 }
 
     .footer-container .footer-text {
         color: var(--clr-primary);
         font-size: 0.875rem;
+        padding-left: 1rem;
     }
 
-/* Hero Section */
+@media (max-width: 765px) {
+    .footer-container  {
+        justify-content:center;
+    }
+}
 
+/* Hero Section */
 #hero-section {
     position: relative;
     padding: 7rem 0;
@@ -403,6 +454,49 @@ body {
     font-weight: 700;
 }
 
+@media (max-width: 765px) { /* This was made with the help of chatGPT */
+
+    .hero-bg-image-container {
+        display: none;
+    }
+
+
+    #hero-section {
+        padding: 2rem; 
+        background-color: var(--clr-light, #f9f9f9); 
+        text-align: center;
+    }
+
+    .hero-content-container {
+        padding: 0 1.25rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-content {
+        width: 100%; 
+        max-width: 500px; 
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.25rem; 
+        line-height: 1.15;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+    }
+
+    .hero-link {
+        align-self: center; 
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+    }
+}
+
 /* About Callback Section */
 #about-callback {
     padding: 7rem 0;
@@ -446,6 +540,50 @@ body {
     font-size: 0.875rem;
     padding: 1.5rem 2rem;
     font-style: italic;
+}
+
+@media (max-width: 765px) { /* This was made with the help of chatGPT*/
+
+    #about-callback {
+        padding: 4rem 0;
+    }
+
+    .about-callback-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .about-callback-body-container,
+    .about-callback-form-container {
+        width: 100%;
+    }
+
+    .about-callback-form-container {
+        margin-top: 0;
+    }
+
+    .about-callback-form-banner p {
+        font-size: 1.5rem; 
+        padding: 1rem 1.25rem;
+    }
+
+    .about-callback-form-description {
+        font-size: 0.875rem; 
+        padding: 1rem 1.25rem;
+        text-align: left;
+    }
+
+    .about-callback-body-container .rte {
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .about-callback-form-container {
+        box-shadow: var(--shadow-sm);
+        border-radius: 0.25rem;
+        overflow: hidden;
+    }
 }
 
 /* Form section */
@@ -649,6 +787,53 @@ body {
             margin: 0;
         }
 
+@media (max-width: 765px) { /* This was made with the help of chatGPT*/
+
+    #service-section {
+        padding: 3rem 0;
+    }
+
+        /* Stack grid into single column. This is just better for very small displays */
+        #service-section .service-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        #service-section .service-card {
+            min-height: auto; 
+        }
+
+            #service-section .service-card img {
+                height: 160px;
+            }
+
+            #service-section .service-card h4 {
+                text-align: center;
+                padding: 1rem;
+                font-size: 1.25rem;
+            }
+
+            #service-section .service-card p {
+                display: none;
+            }
+
+        #service-section .service-header {
+            gap: 0.25rem;
+        }
+
+    .service-section .service-label {
+        font-size: 0.75rem;
+    }
+
+    #service-section .service-title h2,
+    #service-section .service-title h3,
+    #service-section .service-title h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+}
+
+
 /* Service Detail */
 
 #service-detail {
@@ -704,6 +889,35 @@ body {
         gap: 0.5rem;
     }
 
+@media (max-width: 765px) {
+
+    #service-detail {
+        padding: 2.5rem 0;
+    }
+
+    .service-detail-container .service-detail-content {
+        flex-direction: column;
+    }
+
+    .service-detail-aside {
+        display: none;
+    }
+
+    .service-detail-content .service-detail-seperator {
+        display: none;
+    }
+
+    .service-detail-body {
+        width: 100%;
+        gap: 1.25rem;
+    }
+
+        .service-detail-body .rte {
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+}
+
 /* Team Section */
 
 #team-section {
@@ -738,6 +952,41 @@ body {
         padding: 1.25rem 0;
         margin: 0 -0.5rem;
     }
+
+/* --- Tablet (2 columns) ----------------------- */
+@media (max-width: 1000px) {
+    .team-memberList-container > div {
+        width: 50% !important;
+        padding: 0 0.5rem;
+    }
+}
+
+
+/* --- Mobile (1 column) ------------------------ */
+@media (max-width: 765px) {
+    .team-memberList-container {
+        row-gap: 1.5rem;
+    }
+
+        .team-memberList-container > div {
+            width: 100% !important;
+            padding: 0;
+        }
+
+    .team-member-container {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .team-member-text h4 {
+        font-size: 1.125rem;
+    }
+
+    .team-member-text p {
+        font-size: 0.875rem;
+    }
+
+}
 
 /* Team Section: Member card */
 
@@ -819,6 +1068,51 @@ body {
     font-weight: 700;
 }
 
+@media (max-width: 765px) { /* The styling for this part was done with the help of ChatGPT */
+
+    #clientTrust-section {
+        margin-top: 4rem;
+    }
+
+    .clientTrust-bg-image-container {
+        display: none;
+    }
+
+    .clientTrust-content-container {
+        position: static;
+        transform: none;
+        width: 100%;
+        padding: 2rem 1.5rem; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .clientTrust-content {
+        width: 100%;
+        max-width: 600px; 
+        gap: 1.25rem; 
+    }
+
+    .clientTrust-title {
+        font-size: 1.75rem; 
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .clientTrust-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
+    }
+
+    .clientTrust-link {
+        padding: 0.65rem 1.5rem;
+        font-size: 0.9rem;
+        border-radius: 0.35rem;
+    }
+}
+
 /* Contact Section */
 #contact-section {
     padding-top: 2.5rem;
@@ -848,6 +1142,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding-bottom: 1rem;
 }
 
 .contact-info-title {
@@ -882,10 +1177,75 @@ body {
         font-weight: 600;
     }
 
+@media (max-width: 765px) { /* This section was designed with the help of ChatGPT */
+
+
+    #contact-section {
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 2rem;
+        padding: 0 1.5rem; 
+    }
+
+    .contact-image {
+        display: none;
+    }
+
+    .contact-info-container {
+        width: 100%;
+        align-items: flex-start; 
+    }
+
+    .contact-info-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+        text-align: center; 
+        width: 100%; 
+        margin-bottom: 1rem;
+    }
+
+    .contact-info-text-container {
+        width: 100%;
+    }
+
+    .contact-info-field {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding-top: 1rem;
+    }
+
+    .contact-info-icon i {
+        font-size: 1.1rem;
+    }
+
+
+    .contact-info-text {
+        font-size: 0.95rem;
+        max-width: 250px; 
+    }
+
+        .contact-info-text span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-info-text p {
+            margin: 0;
+            word-wrap: break-word;
+        }
+}
+
+
 /* Statement Section */
 #statement-section {
     background-color: var(--clr-neutral);
-    padding: 6rem 0;
+    padding: 6rem 1rem;
 }
 
 .statement-container {
@@ -918,11 +1278,53 @@ body {
     width: 64%;
 }
 
+@media (max-width: 765px) {
+
+    #statement-section {
+        padding: 3rem 1rem;
+    }
+
+    .statement-container {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+
+    .statement-image-container {
+        width: 100%;
+        text-align: center; 
+    }
+
+        .statement-image-container img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .statement-image-container span {
+            font-size: 0.95rem; 
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+    .statement-content-container {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+        .statement-content-container .rte {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+}
+
+
 /* Review Section */
 
 #review-section {
     background-color: var(--clr-white-100);
-    
+    padding: 2rem 1rem;
 }
 
 .review-container {
@@ -976,6 +1378,45 @@ body {
         object-fit: cover;
         overflow: hidden;
     }
+
+@media (max-width: 900px) {
+
+
+    .review-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .review-content-container {
+        width: 100%;
+        text-align: center;
+        padding: 0 1.5rem; 
+    }
+
+    .review-heading {
+        width: 100%;
+        align-items: center;
+    }
+
+        .review-heading span {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .review-heading h2 {
+            font-size: 2rem;
+        }
+
+    .review-image-container {
+        display: none;
+    }
+
+    .review-content-body {
+        width: 100%;
+    }
+}
+
 
 /* Contact Callback Section */
 
@@ -1071,4 +1512,27 @@ body {
     .contactCallback-container .form-submit-btn {
         width: 30%;
     }
+}
+
+@media (max-width: 690px) {
+
+    .contactCallback-text-container {
+        width: 90%; /* stretch wider on small screens */
+        gap: 0.5rem; /* slightly more spacing between elements */
+        padding-bottom: 1.5rem;
+    }
+
+        .contactCallback-text-container span {
+            font-size: 0.75rem; /* smaller label */
+        }
+
+        .contactCallback-text-container h2 {
+            font-size: 2rem; /* slightly smaller title */
+            line-height: 1.2;
+        }
+
+        .contactCallback-text-container p {
+            font-size: 0.8rem; /* slightly smaller description */
+            line-height: 1.4;
+        }
 }
