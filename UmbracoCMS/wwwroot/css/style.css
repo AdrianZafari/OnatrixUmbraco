@@ -1514,25 +1514,25 @@ body {
     }
 }
 
-@media (max-width: 690px) {
+@media (max-width: 690px) { /* Small suggestions were taken from chatGPT here with regards to the styling */
 
     .contactCallback-text-container {
-        width: 90%; /* stretch wider on small screens */
-        gap: 0.5rem; /* slightly more spacing between elements */
+        width: 90%; 
+        gap: 0.5rem; 
         padding-bottom: 1.5rem;
     }
 
         .contactCallback-text-container span {
-            font-size: 0.75rem; /* smaller label */
+            font-size: 0.75rem; 
         }
 
         .contactCallback-text-container h2 {
-            font-size: 2rem; /* slightly smaller title */
+            font-size: 2rem; 
             line-height: 1.2;
         }
 
         .contactCallback-text-container p {
-            font-size: 0.8rem; /* slightly smaller description */
+            font-size: 0.8rem; 
             line-height: 1.4;
         }
 }
